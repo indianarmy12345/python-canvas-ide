@@ -1,5 +1,6 @@
 import { Play, Square, RotateCcw } from "lucide-react";
 import pythonLogo from "@/assets/python-logo.png";
+import ThemeToggle from "@/components/ThemeToggle";
 
 interface HeaderProps {
   onRun: () => void;
@@ -29,6 +30,8 @@ const Header = ({ onRun, onStop, onClear, isRunning }: HeaderProps) => {
       </div>
       
       <div className="flex items-center gap-3">
+        <ThemeToggle />
+        
         <button
           onClick={onClear}
           className="flex items-center gap-2 px-4 py-2 rounded-md 

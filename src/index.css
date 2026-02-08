@@ -8,55 +8,55 @@
 
 @layer base {
   :root {
-    --background: 220 20% 10%;
-    --foreground: 210 20% 95%;
+    --background: 210 20% 98%;
+    --foreground: 220 20% 10%;
 
-    --card: 220 18% 13%;
-    --card-foreground: 210 20% 95%;
+    --card: 210 20% 96%;
+    --card-foreground: 220 20% 10%;
 
-    --popover: 220 18% 13%;
-    --popover-foreground: 210 20% 95%;
+    --popover: 210 20% 96%;
+    --popover-foreground: 220 20% 10%;
 
-    --primary: 142 70% 45%;
+    --primary: 142 70% 40%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 18% 18%;
-    --secondary-foreground: 210 20% 90%;
+    --secondary: 210 15% 90%;
+    --secondary-foreground: 220 20% 20%;
 
-    --muted: 220 15% 20%;
-    --muted-foreground: 215 15% 60%;
+    --muted: 210 15% 92%;
+    --muted-foreground: 220 15% 40%;
 
-    --accent: 210 100% 55%;
+    --accent: 210 100% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 22%;
-    --input: 220 15% 22%;
-    --ring: 142 70% 45%;
+    --border: 210 15% 85%;
+    --input: 210 15% 85%;
+    --ring: 142 70% 40%;
 
     --radius: 0.5rem;
 
-    /* Custom IDE tokens */
-    --editor-bg: 220 20% 8%;
-    --editor-gutter: 220 18% 12%;
-    --console-bg: 220 22% 6%;
-    --header-bg: 220 18% 12%;
-    --success: 142 70% 45%;
+    /* Custom IDE tokens - Light mode */
+    --editor-bg: 210 20% 96%;
+    --editor-gutter: 210 15% 92%;
+    --console-bg: 210 20% 94%;
+    --header-bg: 210 15% 92%;
+    --success: 142 70% 40%;
     --warning: 38 92% 50%;
-    --info: 210 100% 55%;
+    --info: 210 100% 50%;
     --python-blue: 210 60% 45%;
-    --python-yellow: 48 95% 55%;
+    --python-yellow: 48 95% 50%;
 
-    --sidebar-background: 220 18% 11%;
-    --sidebar-foreground: 210 20% 90%;
-    --sidebar-primary: 142 70% 45%;
+    --sidebar-background: 210 15% 94%;
+    --sidebar-foreground: 220 20% 15%;
+    --sidebar-primary: 142 70% 40%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 18% 18%;
-    --sidebar-accent-foreground: 210 20% 90%;
-    --sidebar-border: 220 15% 22%;
-    --sidebar-ring: 142 70% 45%;
+    --sidebar-accent: 210 15% 88%;
+    --sidebar-accent-foreground: 220 20% 15%;
+    --sidebar-border: 210 15% 85%;
+    --sidebar-ring: 142 70% 40%;
   }
 
   .dark {
@@ -87,6 +87,17 @@
     --border: 220 15% 22%;
     --input: 220 15% 22%;
     --ring: 142 70% 45%;
+
+    /* Custom IDE tokens - Dark mode */
+    --editor-bg: 220 20% 8%;
+    --editor-gutter: 220 18% 12%;
+    --console-bg: 220 22% 6%;
+    --header-bg: 220 18% 12%;
+    --success: 142 70% 45%;
+    --warning: 38 92% 50%;
+    --info: 210 100% 55%;
+    --python-blue: 210 60% 45%;
+    --python-yellow: 48 95% 55%;
 
     --sidebar-background: 220 18% 11%;
     --sidebar-foreground: 210 20% 90%;

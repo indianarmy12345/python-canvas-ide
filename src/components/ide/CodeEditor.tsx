@@ -1,4 +1,5 @@
 import Editor from "@monaco-editor/react";
+import { useTheme } from "next-themes";
 
 interface CodeEditorProps {
   code: string;
@@ -6,12 +7,14 @@ interface CodeEditorProps {
 }
 
 const CodeEditor = ({ code, onChange }: CodeEditorProps) => {
+  const { theme } = useTheme();
+  
   return (
     <div className="ide-editor h-full w-full">
       <Editor
         height="100%"
         defaultLanguage="python"
-        theme="vs-dark"
+        theme={theme === "dark" ? "vs-dark" : "light"}
         value={code}
         onChange={onChange}
         options={{
