@@ -1,15 +1,18 @@
 import { Play, Square, RotateCcw } from "lucide-react";
 import pythonLogo from "@/assets/python-logo.png";
 import ThemeToggle from "@/components/ThemeToggle";
+import FileMenu from "./FileMenu";
 
 interface HeaderProps {
   onRun: () => void;
   onStop: () => void;
   onClear: () => void;
   isRunning: boolean;
+  code: string;
+  onCodeChange: (code: string) => void;
 }
 
-const Header = ({ onRun, onStop, onClear, isRunning }: HeaderProps) => {
+const Header = ({ onRun, onStop, onClear, isRunning, code, onCodeChange }: HeaderProps) => {
   return (
     <header className="ide-header px-6 py-4 flex items-center justify-between">
       <div className="flex items-center gap-4">
@@ -29,7 +32,8 @@ const Header = ({ onRun, onStop, onClear, isRunning }: HeaderProps) => {
         </div>
       </div>
       
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2 sm:gap-3">
+        <FileMenu code={code} onCodeChange={onCodeChange} />
         <ThemeToggle />
         
         <button

@@ -73,6 +73,8 @@ const PythonIDE = () => {
         onStop={stopExecution}
         onClear={clearOutputs}
         isRunning={isRunning}
+        code={code}
+        onCodeChange={setCode}
       />
 
       <div className="flex-1 flex overflow-hidden">
