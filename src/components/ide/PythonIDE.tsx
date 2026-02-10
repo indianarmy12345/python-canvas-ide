@@ -114,6 +114,8 @@ const PythonIDE = () => {
         isRunning={isRunning}
         code={activeTab.content}
         onCodeChange={(code) => handleLoadFile(code)}
+        editorMode={editorMode}
+        onEditorModeChange={setEditorMode}
       />
 
       {/* File Tabs */}
