@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useEffect, useCallback } from "react";
 import Header from "./Header";
 import MobileNav from "./MobileNav";
 import FileTabs from "./FileTabs";
@@ -56,7 +56,6 @@ const PythonIDE = () => {
         e.preventDefault();
         handleRun();
       }
-      // Ctrl+N for new tab
       if ((e.ctrlKey || e.metaKey) && e.key === "n") {
         e.preventDefault();
         createNewTab();
