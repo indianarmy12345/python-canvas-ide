@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Header from "./Header";
 import MobileNav from "./MobileNav";
 import FileTabs from "./FileTabs";
@@ -9,6 +9,8 @@ import { usePyodide } from "@/hooks/usePyodide";
 import { useFileTabs } from "@/hooks/useFileTabs";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Loader2 } from "lucide-react";
+
+export type EditorMode = "python" | "mysql";
 import {
   ResizablePanelGroup,
   ResizablePanel,
