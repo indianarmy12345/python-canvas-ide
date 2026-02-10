@@ -5,6 +5,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 interface CodeEditorProps {
   code: string;
   onChange: (value: string | undefined) => void;
+  language?: string;
 }
 
 const CodeEditor = ({ code, onChange }: CodeEditorProps) => {
