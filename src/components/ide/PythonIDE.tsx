@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/resizable";
 
 const PythonIDE = () => {
+  const [editorMode, setEditorMode] = useState<EditorMode>("python");
   const isMobile = useIsMobile();
   const {
     tabs,
