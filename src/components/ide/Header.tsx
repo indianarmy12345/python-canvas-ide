@@ -1,7 +1,9 @@
-import { Play, Square, RotateCcw } from "lucide-react";
+import { Play, Square, RotateCcw, Database } from "lucide-react";
 import pythonLogo from "@/assets/python-logo.png";
+import mysqlLogo from "@/assets/mysql-logo.svg";
 import ThemeToggle from "@/components/ThemeToggle";
 import FileMenu from "./FileMenu";
+import type { EditorMode } from "./PythonIDE";
 
 interface HeaderProps {
   onRun: () => void;
@@ -10,26 +12,37 @@ interface HeaderProps {
   isRunning: boolean;
   code: string;
   onCodeChange: (code: string) => void;
+  editorMode: EditorMode;
+  onEditorModeChange: (mode: EditorMode) => void;
 }
 
-const Header = ({ onRun, onStop, onClear, isRunning, code, onCodeChange }: HeaderProps) => {
+const Header = ({ onRun, onStop, onClear, isRunning, code, onCodeChange, editorMode, onEditorModeChange }: HeaderProps) => {
+  const isPython = editorMode === "python";
   return (
     <header className="ide-header px-6 py-4 flex items-center justify-between">
       <div className="flex items-center gap-4">
         <img 
-          src={pythonLogo} 
-          alt="Python Logo" 
+          src={isPython ? pythonLogo : mysqlLogo} 
+          alt={isPython ? "Python Logo" : "MySQL Logo"}
           className="w-10 h-10 object-contain"
         />
         <div>
           <h1 className="text-2xl font-bold tracking-tight">
-            <span className="python-logo-gradient">PYTHON</span>
+            <span className="python-logo-gradient">{isPython ? "PYTHON" : "MySQL"}</span>
             <span className="text-foreground ml-2">EDITOR</span>
           </h1>
           <p className="text-xs text-muted-foreground">
-            Write, Run, and Learn Python in your browser
+            {isPython ? "Write, Run, and Learn Python in your browser" : "Write and edit MySQL queries in your browser"}
           </p>
         </div>
+        <button
+          onClick={() => onEditorModeChange(isPython ? "mysql" : "python")}
+          className="ml-4 flex items-center gap-2 px-3 py-1.5 rounded-md bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors text-sm"
+          title={`Switch to ${isPython ? "MySQL" : "Python"} Editor`}
+        >
+          {isPython ? <Database className="w-4 h-4" /> : <img src={pythonLogo} alt="" className="w-4 h-4" />}
+          <span className="hidden sm:inline">{isPython ? "MySQL" : "Python"}</span>
+        </button>
       </div>
       
       <div className="flex items-center gap-2 sm:gap-3">

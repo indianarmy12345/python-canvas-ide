@@ -8,7 +8,7 @@ interface CodeEditorProps {
   language?: string;
 }
 
-const CodeEditor = ({ code, onChange }: CodeEditorProps) => {
+const CodeEditor = ({ code, onChange, language = "python" }: CodeEditorProps) => {
   const { theme } = useTheme();
   const isMobile = useIsMobile();
   
@@ -16,7 +16,7 @@ const CodeEditor = ({ code, onChange }: CodeEditorProps) => {
     <div className="ide-editor h-full w-full">
       <Editor
         height="100%"
-        defaultLanguage="python"
+        language={language}
         theme={theme === "dark" ? "vs-dark" : "light"}
         value={code}
         onChange={onChange}
