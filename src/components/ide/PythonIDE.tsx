@@ -4,8 +4,10 @@ import MobileNav from "./MobileNav";
 import FileTabs from "./FileTabs";
 import CodeEditor from "./CodeEditor";
 import Console from "./Console";
+import SQLConsole from "./SQLConsole";
 import TipsPanel from "./TipsPanel";
 import { usePyodide } from "@/hooks/usePyodide";
+import { useSQLite } from "@/hooks/useSQLite";
 import { useFileTabs } from "@/hooks/useFileTabs";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Loader2 } from "lucide-react";
@@ -33,12 +35,22 @@ const PythonIDE = () => {
     switchMode,
   } = useFileTabs();
   
-  const { isLoading, isRunning, outputs, runCode, clearOutputs, stopExecution } =
+  const { isLoading, isRunning: isPythonRunning, outputs, runCode, clearOutputs, stopExecution: stopPython } =
     usePyodide();
 
+  const { isRunning: isSQLRunning, results: sqlResults, runSQL, clearResults: clearSQLResults, stopExecution: stopSQL } =
+    useSQLite();
+
+  const isSQL = editorMode === "mysql";
+  const isRunning = isSQL ? isSQLRunning : isPythonRunning;
+
   const handleRun = useCallback(() => {
-    runCode(activeTab.content, editorMode);
-  }, [activeTab.content, runCode, editorMode]);
+    if (isSQL) {
+      runSQL(activeTab.content);
+    } else {
+      runCode(activeTab.content, "python");
+    }
+  }, [activeTab.content, runCode, runSQL, isSQL]);
 
   const handleCodeChange = useCallback(
     (value: string | undefined) => {
@@ -97,8 +109,8 @@ const PythonIDE = () => {
       <div className="hidden lg:block">
         <Header
           onRun={handleRun}
-          onStop={stopExecution}
-          onClear={clearOutputs}
+          onStop={isSQL ? stopSQL : stopPython}
+          onClear={isSQL ? clearSQLResults : clearOutputs}
           isRunning={isRunning}
           code={activeTab.content}
           onCodeChange={(code) => handleLoadFile(code)}
@@ -110,8 +122,8 @@ const PythonIDE = () => {
       {/* Mobile Header */}
       <MobileNav
         onRun={handleRun}
-        onStop={stopExecution}
-        onClear={clearOutputs}
+        onStop={isSQL ? stopSQL : stopPython}
+        onClear={isSQL ? clearSQLResults : clearOutputs}
         isRunning={isRunning}
         code={activeTab.content}
         onCodeChange={(code) => handleLoadFile(code)}
@@ -144,7 +156,7 @@ const PythonIDE = () => {
               <CodeEditor code={activeTab.content} onChange={handleCodeChange} language={editorMode === "mysql" ? "sql" : "python"} />
             </div>
             <div className="h-48 border-t border-border flex-shrink-0">
-              <Console outputs={outputs} isRunning={isRunning} />
+              {isSQL ? <SQLConsole results={sqlResults} isRunning={isRunning} /> : <Console outputs={outputs} isRunning={isRunning} />}
             </div>
           </div>
         ) : (
@@ -155,7 +167,7 @@ const PythonIDE = () => {
             </ResizablePanel>
             <ResizableHandle withHandle />
             <ResizablePanel defaultSize={40} minSize={20}>
-              <Console outputs={outputs} isRunning={isRunning} />
+              {isSQL ? <SQLConsole results={sqlResults} isRunning={isRunning} /> : <Console outputs={outputs} isRunning={isRunning} />}
             </ResizablePanel>
           </ResizablePanelGroup>
         )}
