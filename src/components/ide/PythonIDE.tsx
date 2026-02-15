@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useEffect, useCallback } from "react";
 import Header from "./Header";
 import MobileNav from "./MobileNav";
 import FileTabs from "./FileTabs";
@@ -18,7 +18,6 @@ import {
 } from "@/components/ui/resizable";
 
 const PythonIDE = () => {
-  const [editorMode, setEditorMode] = useState<EditorMode>("python");
   const isMobile = useIsMobile();
   const {
     tabs,
@@ -30,6 +29,8 @@ const PythonIDE = () => {
     updateTabContent,
     renameTab,
     loadFileToTab,
+    mode: editorMode,
+    switchMode,
   } = useFileTabs();
   
   const { isLoading, isRunning, outputs, runCode, clearOutputs, stopExecution } =
@@ -102,7 +103,7 @@ const PythonIDE = () => {
           code={activeTab.content}
           onCodeChange={(code) => handleLoadFile(code)}
           editorMode={editorMode}
-          onEditorModeChange={setEditorMode}
+          onEditorModeChange={switchMode}
         />
       </div>
 
@@ -115,7 +116,7 @@ const PythonIDE = () => {
         code={activeTab.content}
         onCodeChange={(code) => handleLoadFile(code)}
         editorMode={editorMode}
-        onEditorModeChange={setEditorMode}
+        onEditorModeChange={switchMode}
       />
 
       {/* File Tabs */}
